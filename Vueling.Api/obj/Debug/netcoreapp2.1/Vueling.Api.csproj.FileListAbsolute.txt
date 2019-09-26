@@ -1,0 +1,15 @@
+C:\projects\Vueling\Vueling.Api\Vueling.Api\bin\Debug\netcoreapp2.1\Vueling.Api.deps.json
+C:\projects\Vueling\Vueling.Api\Vueling.Api\bin\Debug\netcoreapp2.1\Vueling.Api.runtimeconfig.json
+C:\projects\Vueling\Vueling.Api\Vueling.Api\bin\Debug\netcoreapp2.1\Vueling.Api.runtimeconfig.dev.json
+C:\projects\Vueling\Vueling.Api\Vueling.Api\bin\Debug\netcoreapp2.1\Vueling.Api.dll
+C:\projects\Vueling\Vueling.Api\Vueling.Api\bin\Debug\netcoreapp2.1\Vueling.Api.pdb
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.csproj.CoreCompileInputs.cache
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.RazorAssemblyInfo.cache
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.RazorAssemblyInfo.cs
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.AssemblyInfoInputs.cache
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.AssemblyInfo.cs
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.RazorTargetAssemblyInfo.cache
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.dll
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.pdb
+C:\projects\Vueling\Vueling.Api\Vueling.Api\obj\Debug\netcoreapp2.1\Vueling.Api.csprojAssemblyReference.cache
