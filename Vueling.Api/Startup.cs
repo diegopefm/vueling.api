@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vueling.Api.Models;
+using Vueling.Data;
+using Vueling.Data.Models;
+using System.Linq;
 
 namespace Vueling.Api
 {
@@ -39,6 +43,20 @@ namespace Vueling.Api
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
+
+            //Add repository to scope
+            services.AddScoped<UserRepository>();
+
+            //sql connection and context
+            var connection = getConnectionString();
+            //vueling@Api2019
+            connection = connection.Replace("xxx","aaa");
+            services.AddDbContext<Context>(options => options.UseSqlServer(connection));
+        }
+
+        private string getConnectionString()
+        {
+            return Configuration.GetSection("ConnectionStrings").GetChildren().First().Value;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

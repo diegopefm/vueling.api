@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Vueling.Api.Models
+﻿namespace Vueling.Api.Models
 {
     public class AppSettings
     {
@@ -11,5 +6,6 @@ namespace Vueling.Api.Models
         public string jwt_audience_token { get; set; }
         public string jwt_issuer_token { get; set; }
         public string jwt_expire_minutes { get; set; }
+        public string database_connection { get; set; }
     }
 }

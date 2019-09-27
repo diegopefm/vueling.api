@@ -20,3 +20,14 @@ INSTALL AND RUN THE API:
 4) Get source code from console: git clone https://github.com/diegopefm/vueling.api.git
 
 6) Launch Visual Studio, open solution file (Vueling.Api.sln) and launch with F5.
+
+CONFIGURE THE DATABASE
+
+Engine: SQL.
+Instance Name: SQLEXPRESS
+Windows Authentication: Off.
+User: vueling
+Pass: vueling@Api2019
+
+If SQL setup is different connection string can be modified in appsettings.json file.
+

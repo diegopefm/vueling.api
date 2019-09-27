@@ -1,0 +1,11 @@
+C:\projects\Vueling\Vueling.Api\Vueling.Data\bin\Debug\netcoreapp2.1\Vueling.Data.deps.json
+C:\projects\Vueling\Vueling.Api\Vueling.Data\bin\Debug\netcoreapp2.1\Vueling.Data.dll
+C:\projects\Vueling\Vueling.Api\Vueling.Data\obj\Debug\netcoreapp2.1\Vueling.Data.csproj.CoreCompileInputs.cache
+C:\projects\Vueling\Vueling.Api\Vueling.Data\obj\Debug\netcoreapp2.1\Vueling.Data.AssemblyInfoInputs.cache
+C:\projects\Vueling\Vueling.Api\Vueling.Data\obj\Debug\netcoreapp2.1\Vueling.Data.AssemblyInfo.cs
+C:\projects\Vueling\Vueling.Api\Vueling.Data\bin\Debug\netcoreapp2.1\Vueling.Data.runtimeconfig.json
+C:\projects\Vueling\Vueling.Api\Vueling.Data\bin\Debug\netcoreapp2.1\Vueling.Data.runtimeconfig.dev.json
+C:\projects\Vueling\Vueling.Api\Vueling.Data\bin\Debug\netcoreapp2.1\Vueling.Data.pdb
+C:\projects\Vueling\Vueling.Api\Vueling.Data\obj\Debug\netcoreapp2.1\Vueling.Data.dll
+C:\projects\Vueling\Vueling.Api\Vueling.Data\obj\Debug\netcoreapp2.1\Vueling.Data.pdb
+C:\projects\Vueling\Vueling.Api\Vueling.Data\obj\Debug\netcoreapp2.1\Vueling.Data.csprojAssemblyReference.cache

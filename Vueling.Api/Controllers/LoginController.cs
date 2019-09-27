@@ -1,9 +1,12 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Threading;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Vueling.Api.Models;
+using Vueling.Data;
+using Vueling.Data.Models;
 
 namespace Vueling.Api.Controllers
 {
@@ -12,10 +15,14 @@ namespace Vueling.Api.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IOptions<AppSettings> settings;
+        private readonly UserRepository repository;
+        //private Context context;
 
-        public LoginController(IOptions<AppSettings> settings)
+        public LoginController(IOptions<AppSettings> settings, UserRepository repository) //Context context
         {
             this.settings = settings;
+            this.repository = repository;
+            //this.context = context;
         }
 
         [HttpGet]
@@ -38,20 +45,27 @@ namespace Vueling.Api.Controllers
         [EnableCors("VuelingPolicy")]
         public ActionResult Authenticate(LoginRequest login)
         {
-            if (login == null) return Unauthorized();
+            if (!validCredentials(login)) return userUnauthorized();
 
-            //TODO: Validate credentials Correctly.
-            bool isCredentialValid = (login.Password == "123456");
-            if (isCredentialValid)
-            {
-                TokenGenerator.settings = settings;
-                var token = "{" + TokenGenerator.GenerateTokenJwt(login.Username) + "}";
-                return new JsonResult(token);
-            }
-            else
-            {
-                return StatusCode((int)HttpStatusCode.Unauthorized, "Invalid credentials!");
-            }
+            TokenGenerator.settings = settings;
+            var token = "{" + TokenGenerator.GenerateTokenJwt(login.Username) + "}";
+            return new JsonResult(token);
+        }
+
+        private bool validCredentials(LoginRequest login)
+        {
+
+            if (login == null) return false;
+
+            var user = repository.getUser(login.Username);
+            if (login == null || user == null || user.Password != login.Password) return false;
+
+            return true;
+        }
+
+        private ObjectResult userUnauthorized()
+        {
+            return StatusCode((int)HttpStatusCode.Unauthorized, "Invalid credentials!");
         }
     }
 }
