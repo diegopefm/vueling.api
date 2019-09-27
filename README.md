@@ -31,4 +31,4 @@ Pass: vueling@Api2019
 
 If SQL setup is different connection string can be modified in appsettings.json file.
 
-Password is set in connection string in code in an encripted way for security reasons so even if you need to change connection string DON'T MODIFY PASSWORD or connection to SQL will fail.
+Password is set in connection string in code in an encripted way for security reasons, so even if you need to change connection string DON'T MODIFY PASSWORD or connection to SQL will fail.

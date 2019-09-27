@@ -23,7 +23,7 @@ namespace Vueling.Api.Controllers
         }
 
         [HttpPost]
-        [Route("authenticate")]
+        [Route("getmanifest")]
         [EnableCors("VuelingPolicy")]
         public ActionResult GetManifest(string flight)
         {

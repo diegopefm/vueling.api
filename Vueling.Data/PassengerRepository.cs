@@ -4,11 +4,11 @@ using Vueling.Data.Models;
 
 namespace Vueling.Data
 {
-    public class PassengersRepository
+    public class PassengerRepository
     {
         public Context context;
 
-        public PassengersRepository(Context context) {
+        public PassengerRepository(Context context) {
             this.context = context;
         }
 
