@@ -8,6 +8,7 @@ using Vueling.Api.Models;
 using Vueling.Data;
 using Vueling.Data.Models;
 using System.Linq;
+using Vueling.Api.Helpers;
 
 namespace Vueling.Api
 {
@@ -47,16 +48,20 @@ namespace Vueling.Api
             //Add repository to scope
             services.AddScoped<UserRepository>();
 
-            //sql connection and context
+            //sql connection and context (with crypted pass)
             var connection = getConnectionString();
-            //vueling@Api2019
-            connection = connection.Replace("xxx","aaa");
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
         }
 
-        private string getConnectionString()
-        {
-            return Configuration.GetSection("ConnectionStrings").GetChildren().First().Value;
+        private string getConnectionString() {
+
+            var connection = Configuration.GetSection("ConnectionStrings").GetChildren().First().Value;
+            IConfigurationSection crypto = Configuration.GetSection("Cryptography");
+            var digit16 = crypto.GetChildren().ElementAt(0).Value;
+            var digit32 = crypto.GetChildren().ElementAt(1).Value;
+            var decryptoPass = Crypto.AES_decrypt("e8ExDkQlL4H7sac7GPgzqg==", digit32, digit16);
+
+            return connection.Replace("xxx", decryptoPass);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

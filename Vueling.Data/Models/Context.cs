@@ -13,7 +13,7 @@ namespace Vueling.Data.Models
         {
         }
 
-        public virtual DbSet<Passengers> Passengers { get; set; }
+        public virtual DbSet<Passenger> Passengers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,7 +29,7 @@ namespace Vueling.Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Passengers>(entity =>
+            modelBuilder.Entity<Passenger>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -47,6 +47,11 @@ namespace Vueling.Data.Models
                     .IsRequired()
                     .HasColumnName("seat")
                     .HasMaxLength(5);
+
+                entity.Property(e => e.Flight)
+                    .IsRequired()
+                    .HasColumnName("flight")
+                    .HasMaxLength(10);
             });
 
             modelBuilder.Entity<User>(entity =>
