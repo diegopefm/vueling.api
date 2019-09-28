@@ -33,11 +33,12 @@ namespace Vueling.Data
             try
             {
                 context.Passengers.Add(passenger);
+                context.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 result = "KO";
-            }
+            }            
             return result;
         }
     }

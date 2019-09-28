@@ -33,6 +33,7 @@ namespace Vueling.Api.Controllers
         }
 
         [HttpPost]
+        [Route("add")]
         [EnableCors("VuelingPolicy")]
         public ActionResult Add(Passenger passenger)
         {

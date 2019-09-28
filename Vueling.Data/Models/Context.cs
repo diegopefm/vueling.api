@@ -33,9 +33,9 @@ namespace Vueling.Data.Models
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Lastname)
+                entity.Property(e => e.Surname)
                     .IsRequired()
-                    .HasColumnName("lastname")
+                    .HasColumnName("surname")
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Name)
