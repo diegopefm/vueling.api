@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Vueling.Data.Models;
 
@@ -20,6 +21,24 @@ namespace Vueling.Data
         public List<Passenger> getPassengers(string flight)
         {
             return context.Passengers.ToList().Where(x => x.Flight == flight).ToList();
+        }
+
+        /// <summary>
+        /// Adds a passenger to database
+        /// </summary>
+        /// <param name="passenger"></param>
+        public string addPassenger(Passenger passenger)
+        {
+            string result = "OK";
+            try
+            {
+                context.Passengers.Add(passenger);
+            }
+            catch (Exception)
+            {
+                result = "KO";
+            }
+            return result;
         }
     }
 }

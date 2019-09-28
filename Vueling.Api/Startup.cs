@@ -47,6 +47,7 @@ namespace Vueling.Api
 
             //Add repository to scope
             services.AddScoped<UserRepository>();
+            services.AddScoped<PassengerRepository>();
 
             //sql connection and context (with crypted pass)
             var connection = getConnectionString();

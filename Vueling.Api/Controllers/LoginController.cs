@@ -42,7 +42,7 @@ namespace Vueling.Api.Controllers
             var token = TokenGenerator.GenerateTokenJwt(login.Username);
             user.Token = token;
 
-            return new JsonResult(new User { Name = user.Name.Trim(), Token = user.Token });
+            return new JsonResult(new User { Name = user.Name, Token = user.Token });
         }
 
         private bool validCredentials(LoginRequest login)
@@ -51,7 +51,7 @@ namespace Vueling.Api.Controllers
             if (login == null) return false;
 
             user = repository.getUser(login.Username);
-            if (login == null || user == null || user.Password.Trim() != login.Password) return false;
+            if (login == null || user == null || user.Password != login.Password) return false;
 
             return true;
         }
