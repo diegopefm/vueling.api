@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Net;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -37,8 +35,8 @@ namespace Vueling.Api.Controllers
         [EnableCors("VuelingPolicy")]
         public ActionResult Add(Passenger passenger)
         {
-            string result = repository.addPassenger(passenger) == "OK" ? "Passenger was added correctly" : "There was a problem adding passenger";
-            return new JsonResult(result);
+            Response response = repository.addPassenger(passenger);
+            return new JsonResult(response);
         }
 
         private ObjectResult userUnauthorized()
