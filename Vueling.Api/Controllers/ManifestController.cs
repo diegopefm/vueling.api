@@ -33,7 +33,7 @@ namespace Vueling.Api.Controllers
         [HttpPost]
         [Route("add")]
         [EnableCors("Cors")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize]
         public ActionResult Add(Passenger passenger)
         {
             Response response = repository.addPassenger(passenger);

@@ -38,7 +38,7 @@ namespace Vueling.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(OAuthValidationDefaults.AuthenticationScheme).AddOAuthValidation();
+            //services.AddAuthentication(OAuthValidationDefaults.AuthenticationScheme).AddOAuthValidation();
 
             services.AddHttpContextAccessor();
 
@@ -65,11 +65,23 @@ namespace Vueling.Api
             //sql connection and context (with crypted pass)
             var connection = getConnectionString();
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
-            //.AddJwtBearer(options =>
-            //{
-            //    options.Audience = Configuration["AzureAD:Audience"];
-            //    options.Authority = Configuration["AzureAD:AADInstance"] + Configuration["AzureAD:TenantId"];
-            //});
+
+            //jwt
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("thisisasupersecuresecretkey")),
+                        RequireSignedTokens = false,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "http://localhost:55909",
+                        ValidAudience = "http://localhost:55909"
+                    };
+                });
         }
 
         private string getConnectionString() {
