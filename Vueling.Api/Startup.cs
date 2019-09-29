@@ -9,16 +9,9 @@ using Vueling.Data;
 using Vueling.Data.Models;
 using System.Linq;
 using Vueling.Api.Helpers;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using AspNet.Security.OAuth.Validation;
 
 namespace Vueling.Api
 {
@@ -67,29 +60,33 @@ namespace Vueling.Api
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
 
             //jwt
+            var secretKey = Configuration.GetSection("AppSettings").GetChildren().Where(x => x.Key == "JWT_SECRET_KEY").First().Value;
+            var validIssuer = Configuration.GetSection("AppSettings").GetChildren().Where(x => x.Key == "JWT_ISSUER_TOKEN").First().Value;
+            var validAudience = Configuration.GetSection("AppSettings").GetChildren().Where(x => x.Key == "JWT_AUDIENCE_TOKEN").First().Value;
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("thisisasupersecuresecretkey")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
                         RequireSignedTokens = false,
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = "http://localhost:55909",
-                        ValidAudience = "http://localhost:55909"
+                        ValidIssuer = validIssuer,
+                        ValidAudience = validAudience
                     };
                 });
         }
 
         private string getConnectionString() {
 
-            var connection = Configuration.GetSection("ConnectionStrings").GetChildren().First().Value;
+            var connection = Configuration.GetSection("ConnectionStrings").GetChildren().Where(x => x.Key == "DatabaseConnection").First().Value;
             IConfigurationSection crypto = Configuration.GetSection("Cryptography");
-            var digit16 = crypto.GetChildren().ElementAt(0).Value;
-            var digit32 = crypto.GetChildren().ElementAt(1).Value;
+            var digit16 = crypto.GetChildren().Where(x => x.Key == "CRYPTO_DIGIT16").First().Value;
+            var digit32 = crypto.GetChildren().Where(x => x.Key == "CRYPTO_DIGIT32").First().Value;
             var decryptoPass = Crypto.AES_decrypt("e8ExDkQlL4H7sac7GPgzqg==", digit32, digit16);
 
             return connection.Replace("xxx", decryptoPass);
