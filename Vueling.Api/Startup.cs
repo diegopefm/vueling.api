@@ -9,6 +9,16 @@ using Vueling.Data;
 using Vueling.Data.Models;
 using System.Linq;
 using Vueling.Api.Helpers;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Server.IISIntegration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using AspNet.Security.OAuth.Validation;
 
 namespace Vueling.Api
 {
@@ -28,6 +38,8 @@ namespace Vueling.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(OAuthValidationDefaults.AuthenticationScheme).AddOAuthValidation();
+
             services.AddHttpContextAccessor();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -38,10 +50,11 @@ namespace Vueling.Api
             // Add our Config object so it can be injected
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddCors(o => o.AddPolicy("VuelingPolicy", builder =>
+            services.AddCors(o => o.AddPolicy("Cors", builder =>
             {
-                builder.AllowAnyOrigin()
+                builder.WithOrigins("http://localhost:4200")
                        .AllowAnyMethod()
+                       .AllowCredentials()
                        .AllowAnyHeader();
             }));
 
@@ -52,6 +65,11 @@ namespace Vueling.Api
             //sql connection and context (with crypted pass)
             var connection = getConnectionString();
             services.AddDbContext<Context>(options => options.UseSqlServer(connection));
+            //.AddJwtBearer(options =>
+            //{
+            //    options.Audience = Configuration["AzureAD:Audience"];
+            //    options.Authority = Configuration["AzureAD:AADInstance"] + Configuration["AzureAD:TenantId"];
+            //});
         }
 
         private string getConnectionString() {
@@ -68,6 +86,8 @@ namespace Vueling.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

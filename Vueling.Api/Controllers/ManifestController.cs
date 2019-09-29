@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -8,7 +10,6 @@ using Vueling.Data.Models;
 
 namespace Vueling.Api.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ManifestController : ControllerBase
@@ -23,7 +24,6 @@ namespace Vueling.Api.Controllers
         }
 
         [HttpGet("{flight}")]
-        [EnableCors("VuelingPolicy")]
         public ActionResult Get(string flight)
         {
             var passengers = repository.getPassengers(flight);
@@ -32,7 +32,8 @@ namespace Vueling.Api.Controllers
 
         [HttpPost]
         [Route("add")]
-        [EnableCors("VuelingPolicy")]
+        [EnableCors("Cors")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public ActionResult Add(Passenger passenger)
         {
             Response response = repository.addPassenger(passenger);

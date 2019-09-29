@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Threading;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -33,7 +34,8 @@ namespace Vueling.Api.Controllers
 
         [HttpPost]
         [Route("authenticate")]
-        [EnableCors("VuelingPolicy")]
+        [EnableCors("Cors")]
+        [AllowAnonymous]
         public ActionResult Authenticate(LoginRequest login)
         {
             if (!validCredentials(login)) return userUnauthorized();
