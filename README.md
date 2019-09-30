@@ -23,6 +23,8 @@ INSTALL AND RUN THE API:
 
 6) Launch Visual Studio, open solution file (Vueling.Api.sln) and launch with F5.
 
+7) La api está configurada para correr en el puerto 55909. Si se ha de modificar dicho puerto se habrá de modificar también el appsettings.json y el environment.ts del front.
+
 CONFIGURE THE DATABASE
 
 Engine: SQL.
