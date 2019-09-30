@@ -11,6 +11,7 @@ namespace Vueling.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("Cors")]
     public class ManifestController : ControllerBase
     {
         private readonly IOptions<AppSettings> settings;
@@ -31,7 +32,6 @@ namespace Vueling.Api.Controllers
 
         [HttpPost]
         [Route("add")]
-        [EnableCors("Cors")]
         [Authorize]
         public ActionResult Add(Passenger passenger)
         {
