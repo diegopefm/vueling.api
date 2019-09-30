@@ -27,6 +27,20 @@ INSTALL AND RUN THE API:
 
 CONFIGURE THE DATABASE
 
+1) Restore backup provided in bbdd folder.
+2) Enable "Mixed Mode Authentication"
+	Management Studio => Right click "Server" => Properties => Security
+3) Remove any existing "Vueling" user if already exists.
+4) Create "vueling" login user.
+	Management Studio => Security => Logins => Right click => New login.
+	User: vueling
+	Pass: vueling@Api2019
+	Default database => Vueling
+5) Create database user.
+	Management Studio => Databases => Vueling => Security => Users => Right click => New User.
+6) Username => vueling (case sensitive) || Securables => Give Select / Insert / Update permissions to Passengers & Users tables.
+7) Restart SQL Server instance: From command line (run as admin) => net stop mssqlserver => net start mssqlserver.
+
 Engine: SQL.
 Instance Name: SQLEXPRESS
 Windows Authentication: Off.
