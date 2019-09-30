@@ -1,13 +1,15 @@
 # vueling.api
 Vueling candidate test api part.
 
-This test includes two projects, a DotNet Core C# Api backend and an Angular 8 frontend. This is the backend part.
+This test includes three projects, two DotNet Core C# Apis (backend part) and an Angular 8 frontend. This is the first api backend part.
 
-Both projects are stored individually on two separate GitHub repositories for "separation of concerns".
+All projects are stored individually on three separate GitHub repositories for "separation of concerns".
 
 Backend is developed using DotNet Core Api 2.1 and Visual Studio 2017.
 
-Cors is enabled in api so to allow a cross domain request from client.
+Database is SQL server and uses Entity Framework as ORM.
+
+Cors is enabled in api so to allow a cross domain request from client (only http://localhost:4200 is allowed for requests).
 
 INSTALL AND RUN THE API:
 
@@ -26,9 +28,12 @@ CONFIGURE THE DATABASE
 Engine: SQL.
 Instance Name: SQLEXPRESS
 Windows Authentication: Off.
+Database name: Vueling
 User: vueling
 Pass: vueling@Api2019
 
 If SQL setup is different connection string can be modified in appsettings.json file.
 
-Password is set in connection string in code in an encripted way for security reasons, so even if you need to change connection string DON'T MODIFY PASSWORD or connection to SQL will fail.
+IMPORTANT: Password is set in connection string in code in an encripted way for security reasons, so even if you need to change connection string DON'T MODIFY PASSWORD or connection to SQL will fail.
+
+Notice: A complete backup of the database can be found in bbdd folder with name Vueling.SQL.bak 
