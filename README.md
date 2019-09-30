@@ -1,6 +1,10 @@
 # vueling.api
 Vueling candidate test api part.
 
+Author: Diego Esteban Pérez
+
+CV and contact: http://www.diegoperezresume.com
+
 This test includes three projects, two DotNet Core C# Apis (backend part) and an Angular 8 frontend. This is the first api backend part.
 
 All projects are stored individually on three separate GitHub repositories for "separation of concerns".
